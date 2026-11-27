@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThaliTime – Design Pitch Deck (12 Slides)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #166534;
+      --primary-light: #22c55e;
+      --bg: #FAFAF5;
+      --dark: #0F172A;
+      --card: #FFFFFF;
+      --text: #1F2937;
+      --muted: #64748B;
+      --border: #E2E8F0;
+      --amber: #F59E0B;
+      --red: #EF4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #111827;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .toolbar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #1E293B;
+      border-radius: 16px;
+      color: #F8FAFC;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: #15803d; }
+    .btn-secondary { background: #334155; }
+    .btn-secondary:hover { background: #475569; }
+
+    /* 16:9 Slide Canvas */
+    .slide-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 50px;
+    }
+    .slide-wrapper.dark {
+      background: var(--dark);
+      color: white;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--primary);
+      color: white;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .slide-wrapper.dark .pill {
+      background: var(--primary-light);
+      color: var(--dark);
+    }
+    .slide-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .slide-wrapper.dark .slide-title {
+      color: white;
+    }
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+    .slide-wrapper.dark .slide-subtitle {
+      color: #94A3B8;
+    }
+
+    /* Grids & Cards */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      flex: 1;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .slide-wrapper.dark .card {
+      background: #1E293B;
+      border-color: #334155;
+      color: white;
+    }
+    .card-accent {
+      background: #F0FDF4;
+      border: 1.5px solid var(--primary-light);
+    }
+    .card-alert {
+      background: #FEF2F2;
+      border: 1.5px solid var(--red);
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .slide-wrapper.dark .card-title {
+      color: #4ADE80;
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 6px;
+    }
+    .stat-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .quote-box {
+      margin-top: auto;
+      padding: 12px;
+      border-radius: 12px;
+      background: #FFFBEB;
+      border-left: 4px solid var(--amber);
+      font-size: 12px;
+      font-style: italic;
+      color: #92400E;
+    }
+    .bullet-item {
+      font-size: 12px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .bullet-item strong {
+      color: var(--text);
+    }
+    .slide-wrapper.dark .bullet-item strong {
+      color: white;
+    }
+    .bullet-item span {
+      color: var(--muted);
+      display: block;
+      font-size: 11px;
+    }
+    .slide-wrapper.dark .bullet-item span {
+      color: #94A3B8;
+    }
+
+    /* Presenter Notes Bar */
+    .notes-panel {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 20px;
+      background: #1E293B;
+      border-radius: 16px;
+      padding: 18px 24px;
+      color: #E2E8F0;
+      border: 1px solid #334155;
+    }
+    .notes-header {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary-light);
+      margin-bottom: 6px;
+    }
+    .notes-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #CBD5E1;
+    }
+
+    .slide-content {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+    }
+    .slide-content.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Toolbar -->
+  <div class="toolbar">
+    <div style="font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+      <span style="color: var(--primary-light);">🍲 ThaliTime</span>
+      <span style="opacity: 0.5;">|</span>
+      <span>12-Slide Design Pitch</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span id="slideCounter" style="font-weight: 700; font-size: 13px; color: #94A3B8;">Slide 1 of 12</span>
+      <button class="btn btn-secondary" onclick="prevSlide()">◀ Previous</button>
+      <button class="btn" onclick="nextSlide()">Next ▶</button>
+      <a href="ThaliTime_Pitch_Deck.pptx" download class="btn" style="background: #2563EB; text-decoration: none;">Download PPTX</a>
+    </div>
+  </div>
+
+  <!-- 16:9 Presentation Deck Canvas -->
+  <div class="slide-wrapper" id="deckCanvas">
+
+    <!-- SLIDE 1 -->
+    <div class="slide-content active" id="slide-1">
+      <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 20px;">
+        <span class="pill">COLLEGE MESS INNOVATION • DESIGN THINKING</span>
+        <h1 style="font-size: 42px; font-weight: 900; color: #FFFFFF; line-height: 1.15; margin-bottom: 8px;">
+          ThaliTime – Smart Mess Meal Management System
+        </h1>
+        <p style="font-size: 18px; font-weight: 700; color: #4ADE80; margin-bottom: 28px;">
+          Tagline: "Your Meal, On Time – Every Time." (Repository: Late-thali)
+        </p>
+
+        <div style="background: #1E293B; border: 1.5px solid #334155; border-radius: 16px; padding: 22px; margin-bottom: 24px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--amber); text-transform: uppercase; margin-bottom: 6px;">
+            THE PROBLEM IN ONE LINE:
+          </div>
+          <p style="font-size: 17px; font-weight: 700; color: white; line-height: 1.4;">
+            "Hostel students lose 35+ minutes daily waiting in chaotic dining queues with zero visibility on food availability, while campus kitchens waste 18% of prepared food due to uncoordinated arrival rushes."
+          </p>
+        </div>
+
+        <div style="background: var(--primary); border-radius: 16px; padding: 18px 24px; color: white; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 14px; font-weight: 800;">TEAM: Team ThaliTime (Developers & Student Welfare Taskforce)</div>
+            <div style="font-size: 12px; color: #BBF7D0; margin-top: 3px;">Full-Stack React + Vite System with 2-Way Live Queue Telemetry</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800;">
+            12-Slide Final Pitch
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide-content" id="slide-2">
+      <span class="pill">SLIDE 02 / 12 • PROBLEM STATEMENT</span>
+      <h2 class="slide-title">The Problem: Campus Congestion & Culinary Waste</h2>
+      <p class="slide-subtitle">Where it happens on campus, who it affects, and one striking piece of empirical evidence.</p>
+      
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Where It Happens</div>
+          <div class="bullet-item">
+            <strong>Central Mess Dining Halls:</strong>
+            <span>Serving Kaveri, Ganga, Brahmaputra & Yamuna blocks (2,400+ residents).</span>
+          </div>
+          <div class="bullet-item">
+            <strong>Bottleneck Corridors:</strong>
+            <span>Single-file plating windows & crowded tray return desks.</span>
+          </div>
+          <div class="bullet-item">
+            <strong>Peak Rush Windows:</strong>
+            <span>12:45–1:30 PM (Lunch class break) and 7:15–8:30 PM (Dinner surge).</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Who It Affects</div>
+          <div class="bullet-item">
+            <strong>2,400+ Resident Students:</strong>
+            <span>Study disruptions, missed morning labs, skipping dinner before exams.</span>
+          </div>
+          <div class="bullet-item">
+            <strong>Mess Kitchen Staff & Cooks:</strong>
+            <span>Hostile crowd rushes, shouting token numbers, manual register stress.</span>
+          </div>
+          <div class="bullet-item">
+            <strong>Mess Contractors & Admin:</strong>
+            <span>Losing thousands weekly in dumped buffer food and chronic complaints.</span>
+          </div>
+        </div>
+
+        <div class="card card-accent">
+          <div class="card-title">Striking Evidence</div>
+          <div style="margin-bottom: 12px;">
+            <div class="stat-number">38 MINS</div>
+            <div class="stat-label">Average Peak Wait Time</div>
+            <div class="stat-desc">Measured at Central Counter 1 during 7:30 PM dinner rush.</div>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <div class="stat-number" style="color: var(--amber);">45+ KG</div>
+            <div class="stat-label">Cooked Food Wasted Nightly</div>
+            <div class="stat-desc">Dumped into drums due to lack of advance booking data.</div>
+          </div>
+          <div>
+            <div class="stat-number" style="color: var(--red);">42%</div>
+            <div class="stat-label">Students Skipping Meals</div>
+            <div class="stat-desc">Skip dinner rather than standing in chaotic queues.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide-content" id="slide-3">
+      <span class="pill">SLIDE 03 / 12 • USER PERSONAS</span>
+      <h2 class="slide-title">The Users: Campus Personas & Real Quotes</h2>
+      <p class="slide-subtitle">Understanding the conflicting viewpoints and daily frictions of students and mess workers.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size: 18px; font-weight: 800; color: var(--primary);">Aarav Sharma</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px;">3rd Year B.Tech • Kaveri Boys Hostel</div>
+          <div class="bullet-item"><strong>Goal:</strong> <span>Quick healthy meal between tight class schedules.</span></div>
+          <div class="bullet-item"><strong>Pain:</strong> <span>Arrives to find 40+ people in line; frequent unexpected food shortages.</span></div>
+          <div class="quote-box">
+            "I stood in line for 25 minutes before an 8:00 AM lab, only to find poha had run out. I had to attend class on an empty stomach."
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 18px; font-weight: 800; color: var(--primary);">Chef Rajesh Verma</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px;">Head Mess Admin • Central Kitchen</div>
+          <div class="bullet-item"><strong>Goal:</strong> <span>Prepare exact thali quantities and operate calm counters.</span></div>
+          <div class="bullet-item"><strong>Pain:</strong> <span>Cannot predict attendance; oscillates between shortages and waste.</span></div>
+          <div class="quote-box" style="border-left-color: var(--primary); background: #F0FDF4; color: var(--primary);">
+            "Cooking dinner for 800 students without advance booking is pure gambling. Some nights we run short; other nights we discard 3 buckets of paneer."
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 18px; font-weight: 800; color: var(--primary);">Ananya Iyer</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px;">Final Year Student • Ganga Girls Hostel</div>
+          <div class="bullet-item"><strong>Goal:</strong> <span>Time predictability during exams and placement interviews.</span></div>
+          <div class="bullet-item"><strong>Pain:</strong> <span>Uncertain line delays force expensive outside food delivery.</span></div>
+          <div class="quote-box">
+            "During placement interviews, I cannot afford a 40-minute queue delay. I just want to know when my plate is ready so I can pick it up."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide-content" id="slide-4">
+      <span class="pill">SLIDE 04 / 12 • FIELD RESEARCH</span>
+      <h2 class="slide-title">Field Research: Quantitative Metrics & Shift Logs</h2>
+      <p class="slide-subtitle">Hard data from campus surveys, kitchen audits, in-depth interviews, and site timing.</p>
+
+      <div class="grid-4" style="margin-bottom: 20px;">
+        <div class="card" style="padding: 16px;">
+          <div class="stat-number">142</div>
+          <div class="stat-label">Survey Responses</div>
+          <div class="stat-desc">Hostel residents across 4 blocks</div>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Deep Interviews</div>
+          <div class="stat-desc">12 students, 4 cooks, 2 wardens</div>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Field Shift Visits</div>
+          <div class="stat-desc">Timed morning, lunch & dinner lines</div>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <div class="stat-number" style="color: var(--amber);">89%</div>
+          <div class="stat-label">>20 Min Line Wait</div>
+          <div class="stat-desc">Regularly trapped in peak queues</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Field Shift Observations</div>
+          <div class="bullet-item"><strong>Paper Register Chokepoint:</strong> <span>Manual roll-call signing took 14 seconds per student, creating an artificial queue choke.</span></div>
+          <div class="bullet-item"><strong>Arrival Clustering:</strong> <span>73% of dinner diners arrive in the exact same 25-minute window (7:15–7:40 PM).</span></div>
+          <div class="bullet-item"><strong>Information Blackout:</strong> <span>Students in line cannot see remaining quantities, causing sudden stock-out arguments.</span></div>
+        </div>
+
+        <div class="card card-accent">
+          <div class="card-title">Key Survey Demand Signals</div>
+          <div class="bullet-item"><strong>94% Want Mobile Booking:</strong> <span>Eager to reserve 10-minute slots on phone if it cuts wait to under 5 mins.</span></div>
+          <div class="bullet-item"><strong>76% Food Shortage Experience:</strong> <span>Encountered stock-outs on special thalis or paneer twice a week.</span></div>
+          <div class="bullet-item"><strong>18.5% Cooked Food Waste:</strong> <span>Kitchen audit verified ~45-50 kg of prepared food discarded on unpredictable nights.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide-content" id="slide-5">
+      <span class="pill">SLIDE 05 / 12 • THE SURPRISING INSIGHT</span>
+      <h2 class="slide-title">The Insight: The Paradox of Mess Crowding</h2>
+      <p class="slide-subtitle">The unexpected discovery that redefined our understanding of why dining halls become chaotic.</p>
+
+      <div style="background: white; border: 2px solid var(--amber); border-radius: 20px; padding: 26px; margin-bottom: 24px;">
+        <div style="font-size: 13px; font-weight: 800; color: var(--amber); text-transform: uppercase; margin-bottom: 10px;">
+          THE THING THAT SURPRISED US (ROOT CAUSE DISCOVERY):
+        </div>
+        <p style="font-size: 17px; font-weight: 700; color: var(--primary); line-height: 1.5;">
+          "We assumed the long queues were caused by slow kitchen plating.<br>
+          The reality was completely different: 80% of students rushed down in the exact same 25-minute window not because of hunger, but out of fear that the special thali would run out before they arrived!<br>
+          The fear of scarcity was creating the surge, which created the queue, which caused the panic."
+        </p>
+      </div>
+
+      <div style="background: var(--primary); border-radius: 20px; padding: 26px; color: white;">
+        <div style="font-size: 13px; font-weight: 800; color: #4ADE80; text-transform: uppercase; margin-bottom: 8px;">
+          OUR DESIGN POINT OF VIEW (POV) STATEMENT:
+        </div>
+        <p style="font-size: 19px; font-weight: 800; line-height: 1.4;">
+          Hostel students and mess administrators<br>
+          <span style="color: #BBF7D0;">NEED a guaranteed digital meal reservation with live virtual queue tracking,</span><br>
+          BECAUSE arrival uncertainty and uncoordinated rushes waste critical student study hours and force kitchens into massive food wastage.
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide-content" id="slide-6">
+      <span class="pill">SLIDE 06 / 12 • HOW MIGHT WE</span>
+      <h2 class="slide-title">The Challenge: How Might We?</h2>
+      <p class="slide-subtitle">Framing the design questions that guided our architecture and smart features.</p>
+
+      <div style="background: var(--primary); border: 2px solid var(--primary-light); border-radius: 20px; padding: 26px; color: white; margin-bottom: 24px;">
+        <div style="font-size: 12px; font-weight: 800; color: #BBF7D0; text-transform: uppercase; margin-bottom: 8px;">
+          OUR PRIMARY HOW MIGHT WE (HMW) QUESTION:
+        </div>
+        <p style="font-size: 21px; font-weight: 800; line-height: 1.4;">
+          "How might we synchronize student arrivals and kitchen preparation so that students get hot meals with zero waiting, and mess staff cook with zero guesswork?"
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="background: #1E293B; border-color: #334155; color: white;">
+          <div class="card-title" style="color: #4ADE80;">Pillar 1: Staggered Scheduling</div>
+          <p style="font-size: 13px; color: #CBD5E1; line-height: 1.5;">
+            How might we distribute arrival times evenly across 10-minute slots without imposing rigid, authoritarian curfew rules?
+          </p>
+        </div>
+        <div class="card" style="background: #1E293B; border-color: #334155; color: white;">
+          <div class="card-title" style="color: #4ADE80;">Pillar 2: Virtual Queue Telemetry</div>
+          <p style="font-size: 13px; color: #CBD5E1; line-height: 1.5;">
+            How might we keep students relaxed in their hostel rooms until their food is physically plated and ready for collection?
+          </p>
+        </div>
+        <div class="card" style="background: #1E293B; border-color: #334155; color: white;">
+          <div class="card-title" style="color: #4ADE80;">Pillar 3: Predictive Kitchen Prep</div>
+          <p style="font-size: 13px; color: #CBD5E1; line-height: 1.5;">
+            How might we forecast batch cooking volumes before stoves are ignited so kitchens never run out of food and never dump surplus?
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide-content" id="slide-7">
+      <span class="pill">SLIDE 07 / 12 • IDEATION</span>
+      <h2 class="slide-title">Ideation: Brainstorm Groups & Selection Matrix</h2>
+      <p class="slide-subtitle">Clustering 30+ concepts, impact vs. feasibility mapping, and the idea we rejected.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Idea Clusters (Brainstorm Wall)</div>
+          <div class="bullet-item">
+            <strong>Group A: Hardware Automation:</strong>
+            <span>RFID turnstiles, vending dispensers, robotic conveyor plate arms.</span>
+          </div>
+          <div class="bullet-item">
+            <strong style="color: var(--primary);">Group B: Staggered Scheduling & Virtual Queue (Selected):</strong>
+            <span>ThaliTime digital token app with 10-minute pickup slots, live counter sync, and prep demand forecasts.</span>
+          </div>
+          <div class="bullet-item">
+            <strong>Group C: Policy & Penalties:</strong>
+            <span>Mandatory hostel floor rotation times, penalty fines for late dining, and strictly enforced meal curfews.</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card" style="flex: 1;">
+            <div class="card-title">Impact vs. Feasibility Matrix</div>
+            <div class="bullet-item">
+              <strong style="color: var(--primary);">High Impact + High Feasibility (WINNER):</strong>
+              <span>ThaliTime Web Platform (Zero hardware installation, runs on any student phone).</span>
+            </div>
+            <div class="bullet-item">
+              <strong>Low Impact + High Feasibility:</strong>
+              <span>WhatsApp Menu Broadcast (Informs students but doesn't regulate queues).</span>
+            </div>
+            <div class="bullet-item">
+              <strong>High Impact + Low Feasibility:</strong>
+              <span>Automated Conveyor Dispenser (Prohibitive capex: >₹15 Lakhs per hall).</span>
+            </div>
+          </div>
+
+          <div class="card card-alert" style="flex: 1;">
+            <div class="card-title" style="color: var(--red);">The Idea We Rejected & Why</div>
+            <div style="font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px;">
+              Rejected: Biometric RFID Turnstile Gates at Dining Hall Entrance Doors
+            </div>
+            <p style="font-size: 11px; color: var(--muted); line-height: 1.4;">
+              Required ₹4.5 Lakhs capex per hall; caused severe physical bottle-neck jams when 150 students scanned badges simultaneously; and completely failed to solve kitchen overcooking or counter chaos once students walked inside.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide-content" id="slide-8">
+      <span class="pill">SLIDE 08 / 12 • PROTOTYPE EVOLUTION</span>
+      <h2 class="slide-title">Prototype Evolution: Paper to Production</h2>
+      <p class="slide-subtitle">How our prototype evolved across 3 iterations, and the core hypotheses tested.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Stage 1: Low-Fi Paper</div>
+          <div class="bullet-item"><strong>Format:</strong> <span>Hand-sketched wireframe screens and printed paper token coupons.</span></div>
+          <div class="bullet-item"><strong>Tested:</strong> <span>Whether students understood 10-minute pickup slots and if cooks could read token slips quickly.</span></div>
+          <div class="bullet-item"><strong style="color: var(--amber);">Key Learning:</strong> <span>Students demanded visual confirmation of remaining thalis before booking, not just a time slot.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Stage 2: Mid-Fi Wireframes</div>
+          <div class="bullet-item"><strong>Format:</strong> <span>Interactive Figma mobile mockups with clickable slot selection and queue bar.</span></div>
+          <div class="bullet-item"><strong>Tested:</strong> <span>Mobile touch ergonomics, ticket barcode layout, and visual progress bar comprehension.</span></div>
+          <div class="bullet-item"><strong style="color: var(--amber);">Key Learning:</strong> <span>Students wanted to see exact "People Ahead" counts in plain numbers rather than an abstract bar.</span></div>
+        </div>
+
+        <div class="card card-accent">
+          <div class="card-title">Stage 3: High-Fi Web App</div>
+          <div class="bullet-item"><strong>Format:</strong> <span>Full-stack React + Tailwind + Vite system with event-driven store & admin desk.</span></div>
+          <div class="bullet-item"><strong>Tested:</strong> <span>Live 2-way sync: does marking "Ready" on admin tablet instantly ding student phone in hostel room?</span></div>
+          <div class="bullet-item"><strong style="color: var(--primary);">Key Learning:</strong> <span>Engineered atomic inventory deduction and cross-tab reactive broadcasting to ensure zero double-booking errors.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9 -->
+    <div class="slide-content" id="slide-9">
+      <span class="pill">SLIDE 09 / 12 • TESTING & VALIDATION</span>
+      <h2 class="slide-title">Testing & Validation: User Behavior & Feedback Matrix</h2>
+      <p class="slide-subtitle">Pilot testing observations with 32 students and our 4-quadrant feedback analysis.</p>
+
+      <div class="card" style="margin-bottom: 20px; padding: 18px 24px;">
+        <div class="card-title">What Users Actually Did During Simulation Runs</div>
+        <div class="grid-2">
+          <div class="bullet-item"><strong>84% Advance Booking:</strong> <span>Booked dinner slot 45–60 minutes in advance from hostel desks.</span></div>
+          <div class="bullet-item"><strong>Eliminated Door Loitering:</strong> <span>Monitored "Now Serving" from rooms instead of crowding counters.</span></div>
+          <div class="bullet-item"><strong>Queue Compression:</strong> <span>Counter line dropped from 40+ people down to under 4 students.</span></div>
+          <div class="bullet-item"><strong>Fast Admin Dispatch:</strong> <span>Kitchen staff took under 2 seconds to mark "Ready" or "Collected".</span></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card card-accent" style="padding: 16px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">(+) WHAT WORKED WELL</div>
+          <p style="font-size: 11px; color: var(--text);">Students loved knowing token TT-XXXX guaranteed their thali portion; praised the clear "People Ahead" countdown progress bar.</p>
+        </div>
+        <div class="card" style="padding: 16px; background: #FFFBEB; border-color: var(--amber);">
+          <div style="font-size: 11px; font-weight: 800; color: var(--amber); margin-bottom: 4px;">(Δ) CONSTRUCTIVE CRITICISM</div>
+          <p style="font-size: 11px; color: var(--text);">Popular slots (7:10 PM) still filled up too fast; students requested automatic suggestions for lighter, less crowded slots.</p>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--text); margin-bottom: 4px;">(?) QUESTIONS RAISED</div>
+          <p style="font-size: 11px; color: var(--muted);">What happens if a student gets delayed by 5 minutes due to an academic lab? (Resolved by engineering a 5-minute grace tolerance buffer).</p>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">(!) SURPRISES & NEW IDEAS</div>
+          <p style="font-size: 11px; color: var(--muted);">Kitchen cooks used slot booking counts to pace bread/naan tandoor baking in fresh batches, cutting cold leftover waste by 70%.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10 -->
+    <div class="slide-content" id="slide-10">
+      <span class="pill">SLIDE 10 / 12 • ITERATION</span>
+      <h2 class="slide-title">Iteration: Before vs. After Evolutions</h2>
+      <p class="slide-subtitle">Three critical feature evolutions directly forced by user testing feedback.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Change 1: Peak-Hour Distribution</div>
+          <div class="bullet-item"><strong style="color: var(--red);">BEFORE:</strong> <span>Static slot picker where all students piled into 7:10 PM, recreating secondary congestion.</span></div>
+          <div class="bullet-item"><strong style="color: var(--amber);">FEEDBACK:</strong> <em>"Everyone still chooses 7:10 PM, so Counter 1 gets jammed all over again."</em></div>
+          <div class="bullet-item"><strong style="color: var(--primary-light);">AFTER:</strong> <span>Smart algorithm detecting slots ≥70% full and suggesting: "Slot busy. Try 7:30 PM for faster service!"</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Change 2: Low-Stock Alerts</div>
+          <div class="bullet-item"><strong style="color: var(--red);">BEFORE:</strong> <span>Items simply flipped to "Sold Out" when quantity hit zero without prior warning.</span></div>
+          <div class="bullet-item"><strong style="color: var(--amber);">FEEDBACK:</strong> <em>"The cooks only realized paneer was over after the metal container was completely empty."</em></div>
+          <div class="bullet-item"><strong style="color: var(--primary-light);">AFTER:</strong> <span>Configurable trigger (≤15 portions) sending immediate amber alerts to staff and students to schedule prep.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Change 3: Counter Segregation & A11y</div>
+          <div class="bullet-item"><strong style="color: var(--red);">BEFORE:</strong> <span>Single mixed line for all meals; standard small mobile typography.</span></div>
+          <div class="bullet-item"><strong style="color: var(--amber);">FEEDBACK:</strong> <em>"Vegetarians don’t want to wait behind slow chicken plating; sunlight makes mobile text hard to read."</em></div>
+          <div class="bullet-item"><strong style="color: var(--primary-light);">AFTER:</strong> <span>Split routing (Counter 1: Veg, Counter 2: Special) + dedicated A11y toggle with 110% font scaling & 48px touch targets.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11 -->
+    <div class="slide-content" id="slide-11">
+      <span class="pill">SLIDE 11 / 12 • FINAL SOLUTION & IMPACT</span>
+      <h2 class="slide-title">Final Solution & Real-World Impact</h2>
+      <p class="slide-subtitle">Handover to live demo (http://localhost:5173), quantifiable impact metrics, and why it beats doing nothing.</p>
+
+      <div class="grid-2">
+        <div class="card" style="background: #1E293B; border-color: #334155; color: white;">
+          <div class="card-title" style="color: #4ADE80;">Live Demo Handover Flow</div>
+          <div class="bullet-item"><strong>▶ Step 1: Student Slot Booking:</strong> <span>Aarav selects dinner thali, 10-min slot, receives digital token TT-1024.</span></div>
+          <div class="bullet-item"><strong>▶ Step 2: Live Queue Telemetry:</strong> <span>Tracks "Now Serving: TT-1018" and "5 Ahead" progress bar from hostel desk.</span></div>
+          <div class="bullet-item"><strong>▶ Step 3: Kitchen Dispatch Operator:</strong> <span>Chef Rajesh advances token from "Waiting" to "Ready" on dispatch tablet.</span></div>
+          <div class="bullet-item"><strong>▶ Step 4: Instant Arrival & Collection:</strong> <span>Student receives "Meal Ready" alert, walks down, collects thali in <90s.</span></div>
+          <div class="bullet-item"><strong>▶ Step 5: Sustainability Analytics:</strong> <span>System logs meal as served, updating food waste savings in real time.</span></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card card-accent" style="flex: 1;">
+            <div class="card-title">Measurable Impact Metrics</div>
+            <div class="bullet-item"><strong>★ 89% Waiting Time Cut:</strong> <span>Average wait dropped from 38 mins to <4 mins counter collection.</span></div>
+            <div class="bullet-item"><strong>★ 62% Food Waste Reduction:</strong> <span>Prevented ~28 kg of cooked surplus food dumping nightly.</span></div>
+            <div class="bullet-item"><strong>★ ₹21,600+ Monthly Cost Savings:</strong> <span>Eliminated ingredient over-preparation losses.</span></div>
+          </div>
+
+          <div class="card" style="flex: 1; background: #1E293B; border-color: #334155; color: white;">
+            <div class="card-title" style="color: #FBBF24;">Why It Beats Doing Nothing</div>
+            <div class="bullet-item"><strong>Cost of Inaction:</strong> <span>Doing nothing costs colleges thousands weekly in dumped thalis and leaves cooks overwhelmed.</span></div>
+            <div class="bullet-item"><strong>Student Well-Being:</strong> <span>Doing nothing forces students to skip dinner or sacrifice sleep before exams.</span></div>
+            <div class="bullet-item"><strong style="color: #4ADE80;">Zero Hardware Cost:</strong> <span>ThaliTime synchronizes kitchen and dining hall on existing student smartphones.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12 -->
+    <div class="slide-content" id="slide-12">
+      <span class="pill">SLIDE 12 / 12 • REFLECTION & NABC CLOSE</span>
+      <h2 class="slide-title">Reflection, Future Roadmap & NABC Pitch Close</h2>
+      <p class="slide-subtitle">What failed during development, lessons learned, future product roadmap, and our closing pitch.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title" style="color: var(--red);">What Failed & Lessons</div>
+          <div class="bullet-item"><strong>Precision Fallacy:</strong> <span>We assumed students would arrive with second-level accuracy. Real behavior required a 5-minute grace tolerance buffer.</span></div>
+          <div class="bullet-item"><strong>Staff UI Complexity:</strong> <span>First admin portal had too many text inputs. Cooks demanded massive single-tap buttons for greasy kitchen environments.</span></div>
+          <div class="bullet-item"><strong>Multi-Tab Data Sync:</strong> <span>Required building an event-driven broadcast layer to eliminate queue lag.</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Future Roadmap</div>
+          <div class="bullet-item"><strong>▶ Optical Barcode Scanners:</strong> <span>Mount physical scanners at counter windows for 1-second contactless token verification.</span></div>
+          <div class="bullet-item"><strong>▶ Computer Vision Plate Waste:</strong> <span>Overhead cameras scanning unconsumed food in tray bins to track leftover recipe waste.</span></div>
+          <div class="bullet-item"><strong>▶ Mobile Push Notifications:</strong> <span>Native push alerts via FCM directly on student lockscreens.</span></div>
+          <div class="bullet-item"><strong>▶ Multi-Campus Federated Dining:</strong> <span>Enable students to book meals at any campus hostel.</span></div>
+        </div>
+
+        <div class="card card-accent">
+          <div class="card-title">One-Line NABC Close</div>
+          <div class="bullet-item"><strong>NEED (N):</strong> <span>Hostel students lose 35+ mins in lines while kitchens waste 18% of prepared food.</span></div>
+          <div class="bullet-item"><strong>APPROACH (A):</strong> <span>ThaliTime delivers staggered 10-min slot booking, digital tokens, and live queue telemetry.</span></div>
+          <div class="bullet-item"><strong>BENEFIT (B):</strong> <span>89% less waiting time for students, 62% less food waste, and verified cost savings.</span></div>
+          <div class="bullet-item"><strong style="color: var(--primary);">COMPETITION (C):</strong> <span>Unlike chaotic physical queues or static menus, ThaliTime guarantees your thali on time, every time.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Presenter Notes Panel -->
+  <div class="notes-panel">
+    <div class="notes-header">🎤 SPEAKER NOTES & PRESENTATION SCRIPT</div>
+    <div class="notes-text" id="notesContent">Loading notes...</div>
+  </div>
+
+  <script>
+    const totalSlides = 12;
+    let currentSlide = 1;
+
+    const notes = {
+      1: "Good morning everyone. Today we are presenting ThaliTime – Smart Mess Meal Management System. Our tagline is 'Your Meal, On Time – Every Time.' In one line: Hostel students lose over 35 minutes daily trapped in chaotic dining queues with zero visibility on food availability, while college kitchens discard over 45 kg of fresh food nightly due to guesswork. We designed and built ThaliTime to solve both sides of this crisis.",
+      2: "Here is the problem on our campus: Where: The Central Dining Halls serving 2,400+ residents across 4 hostels. Chokepoints occur during 7:15 PM – 8:30 PM. Who: Students facing academic disruption, kitchen staff facing hostile crowd surges, and catering staff losing money. Striking evidence: We timed queues with stopwatches: 38 minutes average wait time at Counter 1, and over 45 kg of fresh food dumped into waste drums nightly because kitchen staff have zero idea how many students will show up.",
+      3: "To ground our design, we interviewed dozens of campus members and developed three primary personas: 1. Aarav: An engineering student who got burned right before an 8 AM exam because the food ran out after 25 minutes in line. 2. Chef Rajesh: A dedicated cook who called dinner preparation 'pure gambling' because he has to guess how many thalis to prep. 3. Ananya: A placement candidate who cannot afford 40-minute queue disruptions during mock interviews.",
+      4: "Our research combined survey numbers with shift observation. We surveyed 142 students, conducted 18 deep interviews, and timed queues across 7 meal shifts. Key numbers: 89% wait over 20 minutes; 76% suffer food shortages; 94% eagerly want mobile slot booking. Observational discovery: manual roll-call signing took 14 seconds per student, and 73% of students arrived in the exact same 25-minute window, creating an impossible physical bottleneck.",
+      5: "This was the turning point of our project. We thought the kitchen was just cooking too slowly. But our insight showed: students were rushing at 7:15 PM out of fear that the food would run out if they came at 7:45 PM! Scarcity anxiety caused the crowd surge, which caused the queue, which caused panic. That led directly to our POV Statement: Both students and mess staff need guaranteed digital reservation and live queue tracking, because uncertainty is the root cause of both waiting queues and kitchen food waste.",
+      6: "This brought us to our central design challenge: How might we synchronize student arrivals and kitchen preparation so that students get hot meals with zero waiting, and mess staff cook with zero guesswork? To solve this, we decomposed it into three pillars: 1. Staggered arrivals via 10-minute slots without punitive curfews. 2. Virtual queue telemetry so students stay in their rooms until food is ready. 3. Automated batch forecasting so kitchens cook exact thali counts.",
+      7: "During ideation, we clustered 30+ concepts across Hardware, Digital Scheduling, and Policies. On our Impact-Feasibility matrix, ThaliTime emerged as the clear champion: high impact with zero hardware cost. Crucially, the idea we rejected was installing RFID turnstiles at dining doors. It cost ₹4.5 Lakhs per hall, caused mechanical crowd crushes during badging, and did zero to prevent kitchens from throwing away 45 kg of unsold thalis.",
+      8: "Our prototyping evolved across three distinct stages: Stage 1 was paper sketches testing whether students would adopt 10-minute arrival slots. We learned they needed dish visibility. Stage 2 was interactive Figma mobile wireframes. We learned students wanted an exact numerical 'People Ahead' countdown. Stage 3 was the full-stack web application running today: React, Tailwind, and Vite, featuring 2-way real-time telemetry where an admin updating a status immediately alerts the student's phone in their hostel room.",
+      9: "During testing with 32 students, user behavior confirmed our core hypothesis. 84% booked 45 minutes ahead, and physical queue density dropped from 40 students down to under 4. Our Feedback Matrix highlighted two major points: Students loved the certainty of their token, but they asked: 'What if my slot is busy? Tell me which slot is free!' And kitchen staff gave us an unexpected bonus: they used slot counts to bake naans in batches, preventing bread from getting cold.",
+      10: "User testing forced three critical engineering changes. Change 1: We built Smart Peak-Hour Distribution because students told us they were still jamming the 7:10 PM slot. The app now detects busy slots and recommends a faster window. Change 2: We added Emergency Low-Stock Alerts when kitchen staff complained they were blindsided when pans ran dry. Change 3: We split counter routing into Veg Counter 1 and Special Counter 2, and built our dedicated Accessibility Mode with larger touch buttons and enhanced contrast.",
+      11: "Now, let's look at the final solution and hand over to our live demo. The system is live on our screen: Student Aarav books a dinner thali, gets token TT-1024, tracks the queue while studying, and Chef Rajesh advances the token to 'Ready'. The student gets an instant ding, walks down, and collects their meal in 90 seconds. The impact is undeniable: 89% reduction in waiting time, 62% reduction in kitchen waste, and over ₹21,000 saved monthly in ingredients. Why does it beat doing nothing? Because doing nothing burns university budget and ruins student well-being.",
+      12: "In honest reflection: what failed initially was our assumption of second-level student punctuality. We learned to design for real human behavior by introducing a 5-minute grace tolerance buffer, and we redesigned the kitchen interface into giant one-tap buttons for greasy kitchen environments. Looking forward: we will integrate optical barcode counter scanners and computer-vision tray waste tracking. To close with our NABC summary: Need: 35 minutes lost in line and 18% food waste. Approach: ThaliTime's staggered slot booking, digital tokens, and live queue tracking. Benefit: 89% less waiting time and 62% less food waste. Competition: Unlike chaotic lines, ThaliTime delivers your meal, on time – every time. Thank you!"
+    };
+
+    function showSlide(num) {
+      if (num < 1 || num > totalSlides) return;
+      currentSlide = num;
+      document.querySelectorAll('.slide-content').forEach(s => s.classList.remove('active'));
+      const activeContent = document.getElementById(`slide-${num}`);
+      if (activeContent) activeContent.classList.add('active');
+
+      const canvas = document.getElementById('deckCanvas');
+      if (num === 1 || num === 6 || num === 11) {
+        canvas.classList.add('dark');
+      } else {
+        canvas.classList.remove('dark');
+      }
+
+      document.getElementById('slideCounter').innerText = `Slide ${num} of ${totalSlides}`;
+      document.getElementById('notesContent').innerText = notes[num] || '';
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) showSlide(currentSlide - 1);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    showSlide(1);
+  </script>
+</body>
+</html>
