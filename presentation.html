@@ -61,7 +61,7 @@
     .slide-wrapper {
       width: 100%;
       max-width: 1200px;
-      aspect-ratio: 16 / 9;
+      min-height: 675px;
       background: var(--bg);
       border-radius: 24px;
       overflow: hidden;
@@ -69,7 +69,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      padding: 40px 50px;
+      padding: 32px 44px;
     }
     .slide-wrapper.dark {
       background: var(--dark);
@@ -77,7 +77,7 @@
     }
     .pill {
       display: inline-block;
-      padding: 6px 14px;
+      padding: 5px 14px;
       border-radius: 9999px;
       font-size: 11px;
       font-weight: 800;
@@ -85,7 +85,7 @@
       text-transform: uppercase;
       background: var(--primary);
       color: white;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       width: fit-content;
     }
     .slide-wrapper.dark .pill {
@@ -93,7 +93,7 @@
       color: var(--dark);
     }
     .slide-title {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
       color: var(--primary);
       line-height: 1.2;
@@ -102,10 +102,10 @@
       color: white;
     }
     .slide-subtitle {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--muted);
       margin-top: 4px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
     .slide-wrapper.dark .slide-subtitle {
       color: #94A3B8;
@@ -115,25 +115,29 @@
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 18px;
       flex: 1;
     }
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 20px;
       flex: 1;
     }
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .slide-wrapper { padding: 24px 20px; min-height: auto; }
+      .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
     }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
+      border-radius: 16px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
